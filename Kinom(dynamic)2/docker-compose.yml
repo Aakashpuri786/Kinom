@@ -1,0 +1,69 @@
+services:
+  # MongoDB (development)
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    # Host port mapping removed to avoid conflicts with any Mongo instances on the host
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  # Backend (development) - mounts source so local changes reflect immediately
+  backend:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./backend:/app:cached
+      - /app/node_modules
+    ports:
+      - "5001:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/kinom
+      - PORT=5000
+      - FRONTEND_URL=http://localhost:5173
+      - NODE_ENV=development
+    command: sh -c "npm ci || npm install && npm run dev"
+    depends_on:
+      - mongo
+
+  # Frontend (development) - Vite dev server (HMR), mounts source
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app:cached
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:5001
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
+      - NODE_ENV=development
+    command: sh -c "npm ci || npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - backend
+
+  # Helper service: waits for frontend and prints clickable URL in logs
+  frontend-wait:
+    image: curlimages/curl:8.3.0
+    depends_on:
+      - frontend
+    entrypoint: ["/bin/sh", "-c", "for i in $(seq 1 60); do if curl -sS http://frontend:5173 >/dev/null 2>&1; then printf 'Frontend ready: http://localhost:5173\n'; break; else printf '.'; sleep 1; fi; done; tail -f /dev/null"]
+
+  # Helper service: waits for backend health endpoint and prints clickable URL in logs
+  backend-wait:
+    image: curlimages/curl:8.3.0
+    depends_on:
+      - backend
+    entrypoint: ["/bin/sh", "-c", "for i in $(seq 1 60); do if curl -sS http://backend:5000/api/health >/dev/null 2>&1; then printf 'Backend ready: http://localhost:5001/api/health\n'; break; else printf '.'; sleep 1; fi; done; tail -f /dev/null"]
+
+volumes:
+  mongo-data:
+    name: kinom_mongo_data
+

@@ -1,0 +1,78 @@
+# Kinom Documentation: Frontend Overview
+
+## Introduction to Kinom
+
+**Kinom** is an online money selling and buying platform designed to facilitate secure and efficient transactions for digital currencies, cryptocurrencies, or virtual money. The platform provides a user-friendly interface for users to buy, sell, manage products, track orders, and engage in marketplace activities. Built with a modern Vue.js frontend, Kinom offers a seamless experience across devices, with a focus on simplicity, security, and accessibility.
+
+The frontend is a single-page application (SPA) using Vue Router for navigation, ensuring fast loading and smooth transitions. It includes a public landing page for visitors and a protected dashboard for registered users.
+
+### Key Features
+- **User Authentication**: Secure login and signup processes.
+- **Marketplace Functionality**: Browse, buy, and sell digital money products.
+- **Dashboard Management**: Comprehensive tools for managing products, carts, orders, and insights.
+- **AI Assistant Integration**: Built-in AI support for user assistance.
+- **Responsive Design**: Optimized for desktop and mobile devices.
+
+## How to Use Kinom
+
+### Getting Started
+1. **Access the Website**: Visit the Kinom homepage at the root URL (e.g., `/`). The landing page loads automatically.
+2. **Navigation**: Use the fixed navbar at the top to scroll to different sections on the homepage or navigate to authentication pages.
+3. **Registration**: Click on "Signup" to create an account. Provide necessary details and verify your email if required.
+4. **Login**: Use the "Login" page to access your account. Upon successful login, you'll be redirected to the dashboard.
+
+### Public Pages
+- **Home Page (`/`)**: The main landing page featuring:
+  - **Hero Section**: Introduction to Kinom with a call-to-action (CTA) for getting started.
+  - **Features Section**: Highlights key platform features like secure transactions and easy management.
+  - **About Section**: Information about the platform's mission and team.
+  - **Testimonials**: User reviews and feedback.
+  - **Why Choose Us**: Benefits of using Kinom.
+  - **Contact Section**: Contact form and details for support.
+  - **Footer**: Links to social media, terms, and privacy policy.
+- **Authentication Page (`/auth`)**: Gateway to login or signup forms.
+- **Login (`/login`)**: Form for existing users to log in.
+- **Signup (`/signup`)**: Form for new users to register.
+
+### Dashboard (Protected Area)
+Access the dashboard after logging in. The dashboard uses a layout with sidebar navigation for easy access to features.
+
+- **Dashboard Home (`/dashboard`)**: Overview of your account, including recent activities, stats, and quick links.
+- **Products (`/dashboard/products`)**: Browse available digital money products for purchase. Search, filter, and add to cart.
+- **Carts (`/dashboard/carts`)**: Manage your shopping cart, view items, adjust quantities, and proceed to checkout.
+- **Orders (`/dashboard/orders`)**: Track your purchase and sale orders, view history, and manage statuses.
+- **Insights (`/dashboard/insights`)**: Analytics and reports on your transactions, sales performance, and market trends.
+- **Your Products (`/dashboard/your-products`)**: Manage products you are selling. Add, edit, or remove listings.
+- **Chats (`/dashboard/chats`)**: Communicate with buyers, sellers, or support via integrated chat system.
+- **AI Assistant (`/dashboard/ai-assistant`)**: Use the built-in AI for help with navigation, queries, or transaction guidance.
+
+### Navigation Tips
+- **Navbar**: On the homepage, links to sections like Hero, Gallery (if available), About, Review, Contact. On mobile, toggle the menu button.
+- **Dashboard Layout**: Sidebar with icons and labels for each section. Active page is highlighted.
+- **Router Guards**: Unauthenticated users are redirected to login if trying to access dashboard routes.
+- **Smooth Scrolling**: Homepage sections scroll smoothly when clicked from navbar.
+
+### Main Functions
+- **Buying Products**: Navigate to Products, select items, add to cart, and complete purchase in Orders.
+- **Selling Products**: List items in Your Products, manage inventory.
+- **Order Management**: View and update order statuses in Orders.
+- **Analytics**: Gain insights from the Insights page for better decision-making.
+- **Communication**: Use Chats for direct interaction.
+- **AI Support**: Ask the AI Assistant for help with any aspect of the platform.
+
+### Where to Find Specific Items
+- **Product Listings**: Located in `/dashboard/products`. Filter by category, price, etc.
+- **Settings**: Not explicitly detailed in frontend code, but likely integrated into Dashboard Home or a profile section (check for user profile pic and data in navbar or dashboard).
+- **User Profile**: Navbar may show user data and profile picture after login (based on typical implementations; confirm in dashboard).
+- **Support/Contact**: Contact section on homepage or Chats in dashboard.
+- **Account Management**: Login/Signup pages for authentication; dashboard for account-related actions.
+
+### Additional Research and Notes
+- **Technology Stack**: Frontend built with Vue.js, Vite for build tool, Tailwind CSS for styling, Vue Router for routing. No API details shared as per request.
+- **Security**: Uses localStorage for token storage; router guards protect dashboard.
+- **Mobile Responsiveness**: Designed with responsive classes for various screen sizes.
+- **Performance**: SPA ensures fast navigation; lazy loading for routes.
+- **Customization**: Users can personalize dashboards, but specifics depend on backend integration.
+- **Future Enhancements**: Potential for more AI features, advanced analytics, or expanded marketplace categories.
+
+This document provides a comprehensive overview of the Kinom frontend to assist in creating an AI assistant. For backend or API details, refer to separate documentation. If you need expansions on specific sections, let me know!

@@ -17,8 +17,7 @@ import Orders from '../views/dashboard/Orders.vue'
 import Insights from '../views/dashboard/Insights.vue'
 import YourProducts from '../views/dashboard/YourProducts.vue'
 import Chats from '../views/dashboard/Chats.vue'
-import AIAssistant from '../views/dashboard/AIAssistant.vue'
-
+import KinomChatWidget from '../components/KinomChatWidget.vue'
 const routes = [
   {
     path: '/',
@@ -40,6 +39,11 @@ const routes = [
     name: 'Signup',
     component: Signup,
   },
+  {
+    path: '/kinom-chat-widget',
+    name: 'KinomChatWidget',
+    component: KinomChatWidget,
+ },
   {
     path: '/dashboard',
     component: DashboardLayout,
@@ -78,11 +82,6 @@ const routes = [
         path: 'chats',
         name: 'Chats',
         component: Chats,
-      },
-      {
-        path: 'ai-assistant',
-        name: 'AIAssistant',
-        component: AIAssistant,
       },
     ],
   },

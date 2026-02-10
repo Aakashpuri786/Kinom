@@ -1,5 +1,8 @@
-<template>
+<template><main>
+  <kinom-chat-widget/>
+</main>
   <div class="flex min-h-screen bg-gray-100">
+    
     <!-- Sidebar -->
     <aside
       class="fixed inset-y-0 left-0 z-50 w-64 transform bg-gradient-to-b from-black via-neutral-900 to-neutral-800 text-white transition-transform duration-300 lg:relative lg:translate-x-0"
@@ -8,7 +11,7 @@
       <div class="flex h-full flex-col">
         <!-- Logo -->
         <div class="flex h-16 items-center justify-between border-b border-white/10 px-6">
-          <router-link to="/" class="flex items-center gap-3">
+          <router-link  class="flex items-center gap-3">
             <span class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/60 text-xs font-semibold uppercase tracking-[0.15em]">
               K
             </span>
@@ -38,15 +41,15 @@
           </router-link>
         </nav>
 
-        <!-- User section -->
+        <!-- User section --> 
         <div class="border-t border-white/10 p-4">
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center text-sm font-semibold">
               {{ user.name.charAt(0).toUpperCase() }}
             </div>
             <div>
-              <p class="text-sm font-medium">{{ user.name }}</p>
-              <p class="text-xs text-white/60">{{ user.email }}</p>
+              <p class="text-sm font-medium"></p>
+              <p class="text-xs text-white/60"></p>
               
             </div>
           </div>
@@ -99,6 +102,7 @@
 <script setup>
 import { ref, computed, h, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import KinomChatWidget from '../components/KinomChatWidget.vue'
 
 const route = useRoute()
 const sidebarOpen = ref(false)
@@ -187,9 +191,7 @@ const ChatsIcon = () => h('svg', { class: 'h-5 w-5', fill: 'none', stroke: 'curr
   h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z' })
 ])
 
-const AIAssistantIcon = () => h('svg', { class: 'h-5 w-5', fill: 'none', stroke: 'currentColor', viewBox: '0 0 24 24' }, [
-  h('path', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', d: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z' })
-])
+
 
 const navItems = [
   { name: 'Dashboard', path: '/dashboard', icon: DashboardIcon },
@@ -199,8 +201,10 @@ const navItems = [
   { name: 'Insights', path: '/dashboard/insights', icon: InsightsIcon },
   { name: 'Your Products', path: '/dashboard/your-products', icon: YourProductsIcon },
   { name: 'Chats', path: '/dashboard/chats', icon: ChatsIcon },
-  { name: 'AI Assistant', path: '/dashboard/ai-assistant', icon: AIAssistantIcon },
+  // { name: '', path: '/components/KinomChatWidget', icon:KinomChatWidget },
+  
 ]
+
 
 const isActive = (path) => {
   if (path === '/dashboard') {

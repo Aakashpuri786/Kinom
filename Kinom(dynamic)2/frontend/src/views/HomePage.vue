@@ -10,6 +10,7 @@
       <CTASection />
        <WhyChooseUs />
       <ContactSection />
+      <KinomChatWidget />
       
     </main>
 
@@ -27,4 +28,5 @@ import Testimonials from '../components/Testimonials.vue'
 import CTASection from '../components/CTASection.vue'
 import ContactSection from '../components/ContactSection.vue'
 import Footer from '../components/Footer.vue'
+import KinomChatWidget  from '../components/KinomChatWidget.vue'
 </script>
